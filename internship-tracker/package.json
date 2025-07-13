@@ -1,0 +1,25 @@
+{
+  "name": "internship-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "mongoose": "^8.16.3",
+    "next": "15.3.5",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^7.0.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "twilio": "^5.7.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
+  }
+}
