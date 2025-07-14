@@ -257,7 +257,7 @@ const InternshipTracker = () => {
                 return (
                   <div
                     key={i}
-                    className={`h-8 w-8 rounded-lg border-2 flex items-center justify-center text-xs font-medium transition-all hover:scale-105 ${getHeatmapColor(count)}`}
+                    className={`h-8 rounded-lg border-2 flex items-center justify-center text-xs font-medium transition-all hover:scale-105 ${getHeatmapColor(count)}`}
                     title={`${date.toDateString()}: ${count} applications`}
                   >
                     {date.getDate()}
