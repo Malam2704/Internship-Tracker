@@ -1,0 +1,32 @@
+name: Daily Discord Internship Reminder
+
+# Runs every day at 9:00 AM America/Los_Angeles → 16:00 UTC
+on:
+  schedule:
+    - cron: "0 16 * * *"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GH_REPO_URL: https://github.com/vanshb03/Summer2026-Internships
+          LI_JOBS_URL: https://www.linkedin.com/jobs/search-results/?currentJobId=4251561628&eBP=NON_CHARGEABLE_CHANNEL&keywords=software%20intern%20posted%20in%20the%20past%20week&refId=tT9bIFTOBb50RtDvE6BFQA%3D%3D&trackingId=h65xzxguDbthYPAHODxrig%3D%3D
+        run: |
+          payload=$(
+            jq -c --arg gh "$GH_REPO_URL" \
+                  --arg li "$LI_JOBS_URL" \
+            '{
+              content: (
+                "🚀 **Daily Internship Links**\n\n" +
+                "• GitHub repo: \($gh)\n" +
+                "• LinkedIn (CS internships, past week): \($li)\n\n" +
+                "Good luck applying today! 🎯"
+              )
+            }'
+          )
+          curl -X POST "$WEBHOOK_URL" \
+               -H "Content-Type: application/json" \
+               -d "$payload"
